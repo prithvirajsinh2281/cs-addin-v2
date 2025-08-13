@@ -11,6 +11,11 @@
   <SupportUrl DefaultValue="https://www.contractsafe.com/support"/>
   <AppDomains>
       <AppDomain>https://vendor-2.contractsafe.com</AppDomain>
+      <AppDomain>https://app.contractsafe.com</AppDomain>
+      <AppDomain>https://app.contractsafe.eu</AppDomain>
+      <AppDomain>https://app.contractsafe.ca</AppDomain>
+      <AppDomain>https://au.contractsafe.com</AppDomain>
+      <AppDomain>https://preprod.contractsafe.com</AppDomain>
   </AppDomains>
   <Hosts>
     <Host Name="Document"/>

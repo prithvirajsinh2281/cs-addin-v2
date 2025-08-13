@@ -24,8 +24,14 @@ const useLoginDialogBox = () => {
   }
 
   async function handleDialogBox() {
+    const url = metadata
+      ? `${metadata?.ctSafeBaseUrl}office-addin`
+      : "https://vendor-2.contractsafe.com/office-addin";
+
+    console.log("HEllo World ::", metadata, url);
+
     Office.context.ui.displayDialogAsync(
-      "https://vendor-2.contractsafe.com/web_word_addin_login",
+      url,
       { height: 80, width: 80, displayInIframe: false },
       function (asyncResult) {
         if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {

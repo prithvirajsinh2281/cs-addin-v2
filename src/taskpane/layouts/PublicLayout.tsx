@@ -22,6 +22,14 @@ const CONTRACT_OPTIONS = [
     value: "https://au.contractsafe.com/",
     label: "Australia",
   },
+  {
+    value: "https://vendor-2.contractsafe.com/",
+    label: "Vendor 2",
+  },
+  {
+    value: "https://preprod.contractsafe.com/",
+    label: "Pre Prod",
+  },
 ];
 
 const PLACEHOLDER_TEXT = "Select an Option";

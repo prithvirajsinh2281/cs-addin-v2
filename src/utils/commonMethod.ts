@@ -12,13 +12,13 @@ export async function restApiRequest<T = any>(
   const metadata = JSON.parse(localStorage.getItem("metadata") || null);
   const properties = options.properties;
 
-
   if (!metadata) {
     return new Error();
   }
 
-  const BASE_URL =
-    metadata?.ctSafeBaseUrl ? metadata?.ctSafeBaseUrl  + "api/v1/" : "https://vendor-2.contractsafe.com/api/v1/";
+  const BASE_URL = metadata?.ctSafeBaseUrl
+    ? metadata?.ctSafeBaseUrl + "api/v1/"
+    : "https://vendor-2.contractsafe.com/api/v1/";
 
   const { method = "GET", headers = {}, body } = options;
 
