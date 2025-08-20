@@ -7,7 +7,7 @@ import { CSSuccess, CSActions, ExpiredCSLock, SaveAsNew, ShimmerScreen } from ".
 import { getCustomProperties } from "../../utils/commonMethod";
 
 const AppContent = () => {
-  const { isAuthenticated, setMetadata } = useToken();
+  const { isAuthenticated, setMetadata, metadata } = useToken();
   const [isInitializing, setIsInitializing] = useState(true);
 
   const navItems = [
@@ -29,7 +29,7 @@ const AppContent = () => {
 
         if (contractMetaDatabyCP?.ctSafeJwtToken) {
           setMetadata({
-            ctSafeBaseUrl: "https://vendor-2.contractsafe.com/",
+            ...metadata,
             ctSafeJwtToken: contractMetaDatabyCP.ctSafeJwtToken,
           });
         }

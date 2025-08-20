@@ -79,15 +79,11 @@ export const useContractOperations = () => {
           properties.ctSafeContractId
         ),
         navigationPath: "/cs-success",
-        navigationView: false,
+        navigationView: true,
       });
     });
 
   const saveNew = async (newContractName) => {
-    if (!newContractName?.trim() || newContractName.trim().length < 3) {
-      return showError("Validation Error", "Contract Name should be greater than 3 letters!");
-    }
-
     executeOperation(async () => {
       const res = await processAndUploadDoc({
         url: "ms_word/save_new_contract",
@@ -109,7 +105,7 @@ export const useContractOperations = () => {
           res.contracts?.[0]?.uuid
         ),
         navigationPath: "/cs-success",
-        navigationView: false,
+        navigationView: true,
       });
     });
   };

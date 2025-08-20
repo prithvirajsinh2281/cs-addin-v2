@@ -8,20 +8,27 @@ import { Loader } from "../components/ui";
 import { useContractOperations } from "../hooks/useContractOperations";
 
 const SaveAsNew = () => {
-  const { control, getValues } = useForm({
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       newContractName: "",
     },
   });
 
-  const { properties } = useContractData();
+  const { properties, setProperties } = useContractData();
   const navigate = useNavigate();
   const { isLoading, saveNew } = useContractOperations();
 
   const navigateBack = () => navigate("/");
 
-  const handleSaveNew = async () => {
-    const { newContractName } = getValues();
+  const onSubmit = async (data: { newContractName: string }) => {
+    const { newContractName } = data;
+
+    setProperties({ ...properties, ctSafeContractTitle: newContractName });
+
     await saveNew(newContractName);
   };
 
@@ -45,47 +52,55 @@ const SaveAsNew = () => {
           </Typography>
         </Box>
 
-        <Stack spacing={4}>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-            <Typography variant="subtitle2">Contract Name</Typography>
-            <Controller
-              name="newContractName"
-              control={control}
-              rules={{ required: "This field is required" }}
-              render={({ field, fieldState }) => (
-                <TextField
-                  {...field}
-                  variant="outlined"
-                  fullWidth
-                  size="small"
-                  InputProps={{
-                    style: {
-                      backgroundColor: "#f9fafb",
-                      fontWeight: 500,
-                    },
-                  }}
-                  error={!!fieldState.error}
-                  helperText={fieldState.error?.message}
-                />
-              )}
-            />
-          </Box>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Stack spacing={4}>
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+              <Typography variant="subtitle2">Contract Name</Typography>
+              <Controller
+                name="newContractName"
+                control={control}
+                rules={{
+                  required: "This field is required",
+                  minLength: {
+                    value: 3,
+                    message: "Contract name must be at least 3 characters",
+                  },
+                }}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    variant="outlined"
+                    fullWidth
+                    size="small"
+                    InputProps={{
+                      style: {
+                        backgroundColor: "#f9fafb",
+                        fontWeight: 500,
+                      },
+                    }}
+                    error={!!errors.newContractName}
+                    helperText={errors.newContractName?.message}
+                  />
+                )}
+              />
+            </Box>
 
-          <Button
-            variant="contained"
-            color="primary"
-            fullWidth
-            onClick={handleSaveNew}
-            disabled={isLoading}
-          >
-            Save as New Contract
-          </Button>
-          {properties ? (
-            <Button variant="outlined" fullWidth onClick={navigateBack} disabled={isLoading}>
-              Cancel
+            <Button
+              variant="contained"
+              color="primary"
+              fullWidth
+              disabled={isLoading || (!!errors.newContractName)}
+              type="submit"
+            >
+              Save as New Contract
             </Button>
-          ) : null}
-        </Stack>
+            {properties ? (
+              <Button variant="outlined" fullWidth onClick={navigateBack} disabled={isLoading}>
+                Cancel
+              </Button>
+            ) : null}
+          </Stack>
+        </form>
       </Box>
     </>
   );

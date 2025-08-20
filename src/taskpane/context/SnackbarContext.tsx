@@ -51,6 +51,7 @@ export const SnackbarProvider = ({ children }: { children: ReactNode }) => {
       navigationPath: data?.navigationPath ?? "/cs-success",
     };
 
+    console.log("SNACKBARDATA", { data, newSnackbarData });
     setSnackbar(newSnackbarData);
 
     if (newSnackbarData.navigationPath) {
@@ -59,7 +60,12 @@ export const SnackbarProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const hideSnackbar = () => {
-    setSnackbar((prev) => ({ ...prev, open: false }));
+    setSnackbar((prev) => ({
+      ...prev,
+      open: false,
+    }));
+
+    navigate("/expired-cslock");
   };
 
   return (

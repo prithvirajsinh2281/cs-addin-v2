@@ -1,6 +1,7 @@
 import React, { ReactElement } from "react";
 import { Box, Typography, Button, Stack, Paper, Link } from "@mui/material";
 import { CheckCircle, AlertCircle } from "lucide-react";
+import RenderSnackbarContent from "./RenderSnackbarContent";
 
 type SuccessNotificationProps = {
   title?: string;
@@ -11,7 +12,6 @@ type SuccessNotificationProps = {
 
 const SuccessNotification = ({
   title,
-  message,
   severity = "success",
   onDismiss,
 }: SuccessNotificationProps) => {
@@ -82,8 +82,9 @@ const SuccessNotification = ({
             {title || getDefaultTitle()}
           </Typography>
         </Box>
-
-        {message}
+        <div>
+          <RenderSnackbarContent withLink={true} />
+        </div>
 
         <Box>
           <Button
