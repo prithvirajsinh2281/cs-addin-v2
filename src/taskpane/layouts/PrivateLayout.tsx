@@ -28,7 +28,7 @@ export default function PrivateLayout({ children }) {
             }}
           >
             {children}
-            <Footer />
+            <Footer type="private" />
           </Box>
         </Paper>
       </SnackbarProvider>

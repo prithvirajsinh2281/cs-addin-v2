@@ -137,7 +137,7 @@ export default function PublicLayout() {
           <PrimaryButton label="Get Started" onClick={handleDialogBox} />
         </Box>
       </Box>
-      <Footer />
+      <Footer type="public" />
     </Paper>
   );
 }

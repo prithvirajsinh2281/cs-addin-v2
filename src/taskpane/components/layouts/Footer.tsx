@@ -1,20 +1,9 @@
 import { Box, IconButton, Stack } from "@mui/material";
 import React from "react";
-import { ExternalLinkIcon, LifeBuoyIcon, Settings } from "lucide-react";
-import GetLink from "../ui/GetLink";
-import { useContractData } from "../../context/ContractMetaDataContext";
-import { useToken } from "../../context/TokenContext";
+import { LifeBuoyIcon, Settings } from "lucide-react";
+import GotoContractSafe from "../ui/GotoContractSafe";
 
-const Footer = () => {
-  const { properties } = useContractData();
-
-  const { metadata } = useToken();
-
-  const redirectUrl =
-    metadata?.ctSafeBaseUrl +
-    "v3/contracts" +
-    (properties?.ctSafeContractId ? `/${properties.ctSafeContractId}` : "");
-
+const Footer = ({ type }) => {
   return (
     <Box
       display="flex"
@@ -25,19 +14,7 @@ const Footer = () => {
         padding: "8px 12px",
       }}
     >
-      <GetLink
-        url={redirectUrl}
-        sx={{
-          background: "#f4f5f6",
-          padding: ".5rem",
-          borderRadius: "6px",
-          fontSize: "12px",
-          fontWeight: "600",
-        }}
-      >
-        <ExternalLinkIcon size={16} />
-        Go to ContractSafe
-      </GetLink>
+      <GotoContractSafe type={type} />
 
       <Stack direction="row" spacing={2.5}>
         <IconButton
