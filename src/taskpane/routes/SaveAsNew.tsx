@@ -65,6 +65,8 @@ const SaveAsNew = () => {
                     value: 3,
                     message: "Contract name must be at least 3 characters",
                   },
+                  validate: (value) =>
+                    value.trim().length > 3 || "Contract name cannot be empty or spaces only",
                 }}
                 render={({ field }) => (
                   <TextField
@@ -89,7 +91,7 @@ const SaveAsNew = () => {
               variant="contained"
               color="primary"
               fullWidth
-              disabled={isLoading || (!!errors.newContractName)}
+              disabled={isLoading || !!errors.newContractName}
               type="submit"
             >
               Save as New Contract

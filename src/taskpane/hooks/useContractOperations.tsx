@@ -35,7 +35,18 @@ export const useContractOperations = () => {
 
   const createFormData = (blob: Blob, additionalData: Record<string, string> = {}) => {
     const formData = new FormData();
-    formData.append("uploadedFile", blob, "document.docx");
+    console.log("AdditionalData", additionalData, metadata, properties);
+
+    formData.append(
+      "uploadedFile",
+      blob,
+
+      properties
+        ? `${properties.ctSafeContractTitle}.docx`
+        : additionalData?.title
+          ? `${additionalData?.title}.docx`
+          : `document_${Date.now()}.docx`
+    );
     Object.entries(additionalData).forEach(([key, value]) => {
       if (value !== undefined && value !== null) {
         formData.append(key, String(value));

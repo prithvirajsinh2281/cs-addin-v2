@@ -24,6 +24,7 @@ export async function restApiRequest<T = any>(
 
   let finalHeaders: Record<string, string> = {
     Authorization: `Bearer ${metadata.ctSafeJwtToken}`,
+    // "X-Client-Type": "word_addin",
     ...headers,
   };
 
