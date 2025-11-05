@@ -16,12 +16,14 @@
       <AppDomain>https://app.contractsafe.ca</AppDomain>
       <AppDomain>https://au.contractsafe.com</AppDomain>
       <AppDomain>https://preprod.contractsafe.com</AppDomain>
+      <AppDomain>https://becoming-mullet-above.ngrok-free.app</AppDomain>
+
   </AppDomains>
   <Hosts>
     <Host Name="Document"/>
   </Hosts>
   <DefaultSettings>
-    <SourceLocation DefaultValue="https://localhost:8000/taskpane.html"/>
+    <SourceLocation DefaultValue="https://becoming-mullet-above.ngrok-free.app/addin/word/taskpane/"/>
   </DefaultSettings>
   <Permissions>ReadWriteDocument</Permissions>
   <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">

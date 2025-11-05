@@ -12,6 +12,10 @@ export async function restApiRequest<T = any>(
   const metadata = JSON.parse(localStorage.getItem("metadata") || null);
   const properties = options.properties;
 
+  console.log("DATA ::",{
+    metadata, properties
+  })
+
   if (!metadata) {
     return new Error();
   }
@@ -39,8 +43,8 @@ export async function restApiRequest<T = any>(
     });
     finalHeaders["Content-Type"] = "application/json";
   } else {
-    finalBody = JSON.stringify({ lock_id: properties.ctSafeLockId });
-    finalHeaders["Content-Type"] = "application/json";
+    // finalBody = JSON.stringify({ lock_id: properties.ctSafeLockId });
+    // finalHeaders["Content-Type"] = "application/json";
   }
 
   try {
